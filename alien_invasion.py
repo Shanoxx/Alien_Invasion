@@ -14,7 +14,6 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.settings = Settings()
         
-
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Inwazja Obcych")
@@ -25,18 +24,24 @@ class AlienInvasion:
 
     def run_game(self):
         "Rozpoczecie petli glownej gry"
-        while True:
-            #Oczekiwanie na nacisniecie klawisza lub przycisku myszt.
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            #Odswiezanie ekranu w trakcie kazdej iteracji petli.
+        while True:     
+            self._chceck_events()
+            self._update_screen()     
+            self.clock.tick(60)
+
+    def _chceck_events(self):
+        #Oczekiwanie na nacisniecie klawisza lub przycisku myszt.
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+    
+    def _update_screen(self):
+        #Odswiezanie ekranu w trakcie kazdej iteracji petli.
             self.screen.fill(self.settings.bg_color)
             self.ship.blitme()
 
             #Wyswietlenie ostatnio zmodyfikowanego ekranu.
             pygame.display.flip()
-            self.clock.tick(60)
 
 if __name__ == '__main__':
     #Utworzenie egzemplarza gry i jej uruchomienie.
