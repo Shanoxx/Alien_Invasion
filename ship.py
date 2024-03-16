@@ -39,7 +39,6 @@ class Ship:
         #Uaktualnienie obiektu rect na podstawie wartosci self.x.
         self.rect.x = self.x
 
-
     def blitme(self):
         """Wyswietlenie statku kosmicznego w jego aktualnym polozeniu."""
         self.screen.blit(self.image, self.rect)
